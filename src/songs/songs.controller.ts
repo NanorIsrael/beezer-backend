@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, Post } from '@nestjs/common';
 import { CreateSongDTO } from 'src/dto/create-song-dto';
 import { SongsService } from './songs.service';
 
@@ -12,6 +12,12 @@ export class SongsController {
 
   @Post()
   addSong(@Body() createSongDTO: CreateSongDTO) {
-    return this.songsService.addSong(createSongDTO);
+    try {
+      const result = this.songsService.createSong(createSongDTO);
+      return result;
+    } catch (error) {
+      console.log(error);
+      HttpException.toString();
+    }
   }
 }
