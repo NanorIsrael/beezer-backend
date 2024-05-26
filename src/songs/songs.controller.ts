@@ -4,7 +4,7 @@ import { SongsService } from './songs.service';
 
 @Controller('songs')
 export class SongsController {
-  constructor(readonly songsService: SongsService) {}
+  constructor(private songsService: SongsService) {}
   @Get()
   findAll() {
     return 'Hello world!';
